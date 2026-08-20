@@ -1,0 +1,107 @@
+/* Personal AI Cyber Digital Twin — Main Layout */
+@import url('./variables.css');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg-dark);
+  background-image:
+    radial-gradient(ellipse at 8% 15%, rgba(0,243,255,.04) 0%,transparent 50%),
+    radial-gradient(ellipse at 92% 85%, rgba(157,78,221,.05) 0%,transparent 50%);
+  color:var(--text-main);
+  font-family:var(--font-main);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== HEADER ===== */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.8rem 1.8rem;
+  background:rgba(8,11,19,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border-glass);
+  position:sticky;top:0;z-index:200;
+}
+.header-brand{display:flex;align-items:center;gap:.7rem}
+.brand-icon{
+  width:36px;height:36px;border-radius:9px;
+  background:linear-gradient(135deg,var(--accent-cyan),var(--accent-purple));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;color:#000;
+  box-shadow:var(--glow-cyan);
+}
+.brand-title{
+  font-size:1.1rem;font-weight:700;letter-spacing:-.4px;
+  background:linear-gradient(90deg,#fff,var(--accent-cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* ===== NAVIGATION TABS ===== */
+.nav-tabs{
+  display:flex;gap:4px;
+  background:rgba(0,0,0,.35);
+  padding:3px;border-radius:10px;
+  border:1px solid var(--border-glass);
+}
+.nav-tab{
+  background:transparent;border:none;
+  color:var(--text-muted);
+  padding:.45rem .9rem;border-radius:7px;
+  font-family:var(--font-main);font-weight:600;font-size:.8rem;
+  cursor:pointer;transition:all .2s ease;
+  white-space:nowrap;
+}
+.nav-tab:hover{color:var(--text-main);background:rgba(255,255,255,.04)}
+.nav-tab.active{
+  color:#000;
+  background:linear-gradient(135deg,var(--accent-cyan),var(--accent-purple));
+  box-shadow:var(--glow-cyan);
+}
+
+.status-badge{
+  display:flex;align-items:center;gap:.45rem;
+  padding:.35rem .85rem;border-radius:18px;
+  background:rgba(0,255,136,.08);
+  border:1px solid rgba(0,255,136,.25);
+  color:var(--accent-green);font-size:.78rem;font-weight:600;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent-green);
+  box-shadow:0 0 8px var(--accent-green);
+  animation:pulse 2s infinite;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:320px 1fr 360px;
+  gap:1.2rem;
+}
+@media(max-width:1400px){.dashboard-grid{grid-template-columns:1fr}}
+
+/* ===== STAT CARDS ROW ===== */
+.stat-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:.8rem;
+  margin-bottom:1.2rem;
+}
+.stat-card{
+  background:var(--bg-card);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--border-glass);
+  border-radius:var(--radius-card);
+  padding:1rem 1.1rem;
+  transition:border-color .25s,box-shadow .25s;
+}
+.stat-card:hover{border-color:var(--border-glass-hover);box-shadow:0 4px 24px rgba(0,0,0,.25)}
+.stat-value{
+  font-size:1.6rem;font-weight:800;font-family:var(--font-mono);
+  line-height:1;margin-bottom:.25rem;
+}
+.stat-label{font-size:.72rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.5px}

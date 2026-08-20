@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal AI Cyber Digital Twin - Production-Grade Enterprise Cybersecurity Platform">
+  <title>Personal AI Cyber Digital Twin | Enterprise Platform</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  
+  <!-- D3.js Force-Directed Canvas Graph Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="brand-icon">DT</div>
+      <div>
+        <h1 class="brand-title">CYBER DIGITAL TWIN</h1>
+        <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">ENTERPRISE & RESEARCH COMMAND CENTER v1.0.0</div>
+      </div>
+    </div>
+    
+    <!-- Top Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-overview">🛡️ Overview</button>
+      <button class="nav-tab" data-tab="tab-twin">🧠 Behavioral Twin</button>
+      <button class="nav-tab" data-tab="tab-studio">🔬 Threat Studio</button>
+      <button class="nav-tab" data-tab="tab-simulator">⚔️ Attack Simulator</button>
+      <button class="nav-tab" data-tab="tab-forensics">📜 Forensics & XAI</button>
+    </nav>
+    
+    <div class="header-status">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span id="connection-status">LOCAL AGENT ACTIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Views Container -->
+  <main style="padding: 1.5rem 2rem; max-width: 1800px; margin: 0 auto;">
+
+    <!-- TAB 1: OVERVIEW COMMAND CENTER -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="dashboard-grid" style="padding: 0;">
+        <!-- Left Column: Twin Health Gauge -->
+        <section style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Digital Twin Security Index
+              </h2>
+            </div>
+            
+            <div class="twin-meter-container">
+              <svg class="gauge-svg" viewBox="0 0 160 160">
+                <defs>
+                  <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--accent-cyan)" />
+                    <stop offset="100%" stop-color="var(--accent-purple)" />
+                  </linearGradient>
+                </defs>
+                <circle class="gauge-bg" cx="80" cy="80" r="70" />
+                <circle id="gauge-circle" class="gauge-fill" cx="80" cy="80" r="70" />
+                <text x="80" y="78" text-anchor="middle" class="gauge-score" id="twin-score-text">100%</text>
+                <text x="80" y="105" text-anchor="middle" class="gauge-label" id="twin-status-text">Optimal</text>
+              </svg>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;">
+                Behavioral Baseline & Anomaly Analytics Active
+              </div>
+            </div>
+          </div>
+          
+          <!-- System Sensor Summary Card -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Endpoint Sensor Status
+              </h2>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem;">
+              <div style="display: flex; justify-content: space-between;"><span>Process Execution Guard:</span> <strong style="color: var(--accent-green);">PROTECTED (T1059)</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Network Socket Tracker:</span> <strong style="color: var(--accent-green);">ACTIVE (T1071)</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Clipboard Exposure Guard:</span> <strong style="color: var(--accent-green);">MONITORING (T1115)</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>USB Hardware Sensor:</span> <strong style="color: var(--accent-green);">ARMED (T1091)</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Cam / Mic Privacy Shield:</span> <strong style="color: var(--accent-cyan);">NORMAL</strong></div>
+            </div>
+          </div>
+
+          <!-- Canary File Integrity Shield Card -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Canary Integrity Guard (FIM)
+              </h2>
+              <span id="canary-global-status" style="font-size: 0.7rem; color: var(--accent-green); font-family: var(--font-mono);">● ACTIVE</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.8rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>📂 passwords_vault.txt:</span>
+                <strong id="canary-status-passwords" style="color: var(--accent-green);">SECURE</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>📂 financial_ledger.csv:</span>
+                <strong id="canary-status-ledger" style="color: var(--accent-green);">SECURE</strong>
+              </div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); border-top: 1px solid var(--border-glass); padding-top: 0.4rem; margin-top: 2px;">
+                Ransomware auto-kill protection active.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Center Column: Telemetry & D3 Attack Graph -->
+        <section style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Real-Time Endpoint Telemetry Stream
+              </h2>
+              <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-green);" class="animated-pulse">● LIVE ETW/eBPF</span>
+            </div>
+            <div id="event-stream-list" class="event-list">
+              <div style="color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 2rem;">Connecting to core local telemetry daemon...</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Interactive Attack Graph Topology (D3.js)
+              </h2>
+              <button id="refresh-graph-btn" class="btn" style="padding: 0.3rem 0.7rem; font-size: 0.75rem;">Refresh Topology</button>
+            </div>
+            <div id="attack-graph-container" style="background: rgba(0,0,0,0.4); border-radius: 8px; width: 100%; height: 260px; overflow: hidden; position: relative;">
+              <svg id="d3-graph-svg" width="100%" height="260"></svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Column: AI Assistant Console -->
+        <section style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Digital Twin SOC AI Co-Pilot
+              </h2>
+            </div>
+            <div class="chat-container">
+              <div id="chat-messages-box" class="chat-messages">
+                <div class="chat-bubble bot">
+                  Hello! I am your Personal Cyber Digital Twin SOC Assistant. I am continuously monitoring process, network, clipboard, and hardware vectors. Ask me about system health or suspicious executions.
+                </div>
+              </div>
+              <div class="chat-input-box">
+                <input type="text" id="chat-input" class="input-field" placeholder="Ask about system status or telemetry...">
+                <button id="chat-send-btn" class="btn">Send</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 2: BEHAVIORAL TWIN & AI MEMORY -->
+    <div id="tab-twin" class="tab-content" style="display: none;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🧠 User Habit Exponential Moving Average Baseline</h2>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            The Digital Twin maintains a statistical baseline of your normal working hours, process execution frequencies, and network socket patterns. Any deviation exceeding <strong style="color: var(--accent-cyan);">3.0 Standard Deviations ($\sigma$)</strong> triggers an anomaly flag.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem;">
+            <div style="margin-bottom: 0.5rem;"><strong style="color: var(--accent-cyan);">Active Baseline Memory Models:</strong></div>
+            <div id="baselines-list" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 250px; overflow-y: auto;">
+              <div style="color: var(--text-muted);">No baselines recorded yet. Start opening applications or copying text to seed profiles.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🔒 Privacy Guard & Differential Privacy Noise Settings</h2>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+            <div style="background: rgba(0,243,255,0.05); border: 1px solid var(--border-glass); padding: 0.75rem; border-radius: 8px;">
+              <strong style="color: var(--accent-cyan);">Zero-Knowledge PII Anonymization: ACTIVE</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Passwords, credit cards, private keys, and API secrets are scrubbed from telemetry strings using regex filters before local SQLite storage.</p>
+            </div>
+            <div style="background: rgba(157,78,221,0.05); border: 1px solid rgba(157,78,221,0.3); padding: 0.75rem; border-radius: 8px;">
+              <strong style="color: var(--accent-purple);">Laplace Noise Generator ($\epsilon = 0.5$): ACTIVE</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Statistical feature aggregations are protected with differential privacy Laplace noise to prevent inference side-channel attacks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: THREAT STUDIO -->
+    <div id="tab-studio" class="tab-content" style="display: none;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🔗 Hybrid ONNX ML Phishing Classifier</h2>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <input type="text" id="url-input" class="input-field" placeholder="http://192.168.1.1/login-paypal-verify.xyz">
+            <button id="scan-url-btn" class="btn">Evaluate ONNX ML Model</button>
+            <div id="phishing-result"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🔬 Static PE Binary & YARA Signature Scanner</h2>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <input type="text" id="filepath-input" class="input-field" placeholder="C:\Windows\System32\cmd.exe">
+            <button id="scan-file-btn" class="btn" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-red)); color: #fff;">Run YARA Rules & Entropy Scan</button>
+            <div id="malware-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: ATTACK SIMULATOR -->
+    <div id="tab-simulator" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">⚔️ Live MITRE ATT&CK Attack Simulation Suite</h2>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Trigger safe real-time attack scenarios to observe how the Digital Twin automatically detects threats, updates the D3.js Attack Graph, recalculates the Health Index, and triggers Multi-Agent SOC explanations!
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+          <button class="btn" style="background: linear-gradient(135deg, #ff0055, #ff9e00); color: #fff;" onclick="triggerSimulatedAttack('t1059_powershell')">
+            🚀 Simulate Encoded PowerShell (T1059)
+          </button>
+          <button class="btn" style="background: linear-gradient(135deg, #9d4edd, #ff0055); color: #fff;" onclick="triggerSimulatedAttack('t1115_clipboard')">
+            📋 Simulate Clipboard Secret Harvest (T1115)
+          </button>
+          <button class="btn" style="background: linear-gradient(135deg, #00f3ff, #9d4edd); color: #000;" onclick="triggerSimulatedAttack('t1091_usb')">
+            💾 Simulate Removable USB Payload (T1091)
+          </button>
+          <button class="btn" style="background: linear-gradient(135deg, #ff9e00, #ff0055); color: #fff;" onclick="triggerSimulatedAttack('t1071_c2')">
+            🌐 Simulate Metasploit C2 Port 4444 (T1071)
+          </button>
+        </div>
+
+        <div id="simulation-output" style="margin-top: 1.5rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 8px; padding: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); display: none;"></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FORENSICS & XAI -->
+    <div id="tab-forensics" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📜 Incidents, Forensics & Multi-Agent XAI Triage</h2>
+        </div>
+        <div id="incidents-container-tab">
+          <div style="font-size: 0.85rem; color: var(--text-muted);">No active security incidents detected.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

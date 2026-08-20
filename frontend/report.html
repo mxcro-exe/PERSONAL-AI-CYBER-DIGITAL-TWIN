@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Forensic Investigation Report</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <style>
+    body {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Outfit', sans-serif;
+      padding: 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .report-header {
+      border-bottom: 3px double #000;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      border: 2px solid #000;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-mono);
+    }
+    h1 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: -0.5px;
+      font-weight: 800;
+    }
+    .section-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid #000;
+      padding-bottom: 3px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+    td, th {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    th {
+      background: #f5f6f8;
+      font-weight: 700;
+      width: 30%;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: #f8f9fa;
+      padding: 1rem;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.45;
+    }
+    .footer {
+      margin-top: 4rem;
+      border-top: 1px solid #000;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #555;
+    }
+    @media print {
+      body { padding: 0; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="report-header">
+    <div>
+      <h1>Cyber Forensic Investigation Report</h1>
+      <div style="font-size: 0.8rem; color: #555; font-family: var(--font-mono);">NIST SP 800-86 Evidence Protocol | Security Incident Triage</div>
+    </div>
+    <div class="logo">DT</div>
+  </div>
+  
+  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 1.5rem; font-family: var(--font-mono);">
+    <div><strong>REPORT ID:</strong> <span id="report-id">...</span></div>
+    <div><strong>TIMESTAMP (UTC):</strong> <span id="report-date">...</span></div>
+  </div>
+  
+  <div class="section-title">1. Incident Classification</div>
+  <table>
+    <tr><th>Event Identifier</th><td id="event-id" style="font-family: var(--font-mono);">...</td></tr>
+    <tr><th>Event Type</th><td id="event-type" style="font-weight: 600;">...</td></tr>
+    <tr><th>Severity Level</th><td id="severity" style="font-weight: 600;">...</td></tr>
+    <tr><th>Digital Twin Risk Index</th><td id="risk-score" style="font-weight: 600;">...</td></tr>
+    <tr><th>MITRE Technique Alignment</th><td id="mitre-technique" style="font-family: var(--font-mono);">...</td></tr>
+  </table>
+  
+  <div class="section-title">2. Explainable AI (XAI) Assessment & Rationale</div>
+  <p id="xai-verdict" style="font-size: 0.9rem; color: #222; text-align: justify; margin-bottom: 1.5rem;"></p>
+  
+  <div class="section-title">3. Forensic Chain of Custody & Evidence logs</div>
+  <div id="forensics-log" class="mono">...</div>
+  
+  <div class="section-title">4. Authenticity & Integrity Attestation</div>
+  <table>
+    <tr><th>Investigator Entity</th><td>Personal AI Cyber Digital Twin Forensic Agent (Local Daemon)</td></tr>
+    <tr><th>Verification Hash Algorithm</th><td>SHA-256 salted digital signature</td></tr>
+    <tr><th>Evidence Integrity Status</th><td><strong style="color: #198754;">VERIFIED_UNALTERED_TELEMETRY</strong></td></tr>
+  </table>
+  
+  <div style="margin-top: 4rem; display: flex; justify-content: space-between; font-size: 0.85rem;">
+    <div>
+      <div style="border-top: 1.5px solid #000; width: 220px; text-align: center; padding-top: 0.4rem; margin-top: 2.5rem; font-weight: 600;">
+        Lead Forensic Investigator
+      </div>
+    </div>
+    <div>
+      <div style="border-top: 1.5px solid #000; width: 220px; text-align: center; padding-top: 0.4rem; margin-top: 2.5rem; font-weight: 600;">
+        SOC Supervisor / Commander
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>CONFIDENTIAL - EXPORTED FROM CYBER DIGITAL TWIN DATABASE</span>
+    <span>Page 1 of 1</span>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const eventId = params.get("event_id");
+      if (!eventId) {
+        alert("No Event ID specified.");
+        return;
+      }
+      
+      try {
+        const res = await fetch(`/api/v1/remediation/export-forensics/${eventId}`);
+        const data = await res.json();
+        
+        document.getElementById("report-id").textContent = data.report_id;
+        document.getElementById("report-date").textContent = new Date(data.generated_at).toLocaleString();
+        
+        const target = data.target_event;
+        document.getElementById("event-id").textContent = target.id;
+        document.getElementById("event-type").textContent = target.event_type.toUpperCase();
+        
+        const sev = target.severity.toUpperCase();
+        const severityTd = document.getElementById("severity");
+        severityTd.textContent = sev;
+        if (sev === "CRITICAL" || sev === "HIGH") {
+          severityTd.style.color = "#dc3545";
+        } else if (sev === "MEDIUM") {
+          severityTd.style.color = "#fd7e14";
+        } else {
+          severityTd.style.color = "#198754";
+        }
+        
+        document.getElementById("risk-score").textContent = target.risk_score + " / 100";
+        document.getElementById("mitre-technique").textContent = target.mitre_technique || "T1082 - System Information Discovery";
+        
+        document.getElementById("xai-verdict").textContent = data.multi_agent_assessment.xai_explainer.human_readable_rationale;
+        
+        document.getElementById("forensics-log").textContent = data.multi_agent_assessment.forensic_agent.join("\n");
+        
+        // Auto trigger browser print UI
+        setTimeout(() => {
+          window.print();
+        }, 800);
+      } catch (err) {
+        console.error("Forensic report generation error:", err);
+      }
+    });
+  </script>
+</body>
+</html>

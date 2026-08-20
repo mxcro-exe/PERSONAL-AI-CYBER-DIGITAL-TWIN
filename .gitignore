@@ -1,0 +1,59 @@
+# Python, cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Database and sensitive runtime files
+backend/data/cyber_twin.db
+backend/data/cyber_twin.db-wal
+backend/data/cyber_twin.db-shm
+
+# Canary files (auto-generated at runtime)
+backend/data/canaries/
+
+# Test payload files (auto-generated at runtime)
+backend/data/test_payloads/
+
+# Logs
+*.log
+logs/
+
+# ONNX ML model (large binary - store with LFS if needed)
+backend/models/*.onnx
+
+# Environment files (secrets)
+.env
+.env.*
+backend/.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Node modules (if any)
+node_modules/
+
+# Antigravity
+.gemini/
